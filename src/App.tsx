@@ -1,4 +1,4 @@
-import { KeyboardControls } from "@react-three/drei";
+import { KeyboardControls, Sky } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import Player from "./components/Player";
 
@@ -25,12 +25,14 @@ const App = () => {
 const World = () => {
   return (
     <>
+      <Sky />
+      <ambientLight intensity={0.5} />
+      <directionalLight position={[1, 1, 0]} color="white" />
+
       <mesh position={[0, 0, 0]}>
         <boxGeometry args={[12, 1, 12]} />
         <meshPhongMaterial />
       </mesh>
-      <ambientLight intensity={0.5} />
-      <directionalLight position={[1, 1, 0]} color="white" />
     </>
   );
 };
