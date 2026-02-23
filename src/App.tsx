@@ -28,10 +28,22 @@ const World = () => {
       <Sky />
       <ambientLight intensity={0.5} />
       <directionalLight position={[1, 1, 0]} color="white" />
-
       <mesh position={[0, 0, 0]}>
         <boxGeometry args={[12, 1, 12]} />
         <meshPhongMaterial />
+      </mesh>
+      <mesh position={[9, 0, 0]}>
+        <boxGeometry args={[6, 1, 12]} />
+        <meshPhongMaterial color="blue" />
+      </mesh>
+      <mesh position={[18, 0, 0]}>
+        <boxGeometry args={[12, 1, 12]} />
+        <meshPhongMaterial />
+      </mesh>
+
+      <mesh position={[6, 1, -1]}>
+        <boxGeometry args={[0.1, 3, 0.1]} />
+        <meshPhongMaterial color="orange" />
       </mesh>
     </>
   );
