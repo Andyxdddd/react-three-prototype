@@ -1,6 +1,7 @@
-import { KeyboardControls, Sky } from "@react-three/drei";
-import { Canvas } from "@react-three/fiber";
+import { Environment, KeyboardControls, Sky } from "@react-three/drei";
+import { Canvas, useLoader } from "@react-three/fiber";
 import Player from "./components/Player";
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 
 const App = () => {
   return (
@@ -23,11 +24,17 @@ const App = () => {
 };
 
 const World = () => {
+  const [building, car] = useLoader(GLTFLoader, [
+    "/models/cyberpunk_background_appartment_building.glb",
+    "/models/old_car.glb",
+  ]);
+
   return (
     <>
       <Sky />
-      <ambientLight intensity={0.5} />
-      <directionalLight position={[1, 1, 0]} />
+      <Environment preset="city" />
+      <ambientLight intensity={0.1} />
+      <directionalLight position={[5, 10, 5]} intensity={2} />
 
       <mesh position={[0, 0, 0]}>
         <boxGeometry args={[12, 1, 12]} />
@@ -64,15 +71,29 @@ const World = () => {
         <meshPhongMaterial color="orange" />
       </mesh>
 
-      <mesh position={[15, 1, -4]}>
+      {/* <mesh position={[15, 1, -4]}>
         <boxGeometry args={[4, 4, 4]} />
         <meshPhongMaterial color="red" />
-      </mesh>
+      </mesh> */}
 
-      <mesh position={[7.5, 1, 8]}>
+      {/* <mesh position={[7.5, 1, 8]}>
         <boxGeometry args={[2, 1.5, 4]} />
         <meshPhongMaterial color="blue" />
-      </mesh>
+      </mesh> */}
+
+      <primitive
+        object={building.scene}
+        position={[13.5, 0.5, 22]}
+        rotation={[0, Math.PI / 2, 0]}
+        scale={1}
+      />
+
+      <primitive
+        object={car.scene}
+        position={[7.5, 0.48, 8]}
+        rotation={[0, Math.PI / 2, 0]}
+        scale={1}
+      />
     </>
   );
 };
