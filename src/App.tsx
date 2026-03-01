@@ -1,20 +1,25 @@
-import { KeyboardControls } from "@react-three/drei";
+import { Grid, KeyboardControls } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
+import { controls } from "./configs/controls";
 import Player from "./components/Player";
 import World from "./components/World";
+import { Activity } from "react";
+
+const IS_DEV = true;
+
+const gridConfig = {
+  infiniteGrid: true,
+  followCamera: true,
+};
 
 const App = () => {
   return (
     <div className="bg-gray-950 h-screen">
-      <KeyboardControls
-        map={[
-          { name: "forward", keys: ["ArrowUp", "z", "Z"] },
-          { name: "backward", keys: ["ArrowDown", "s", "S"] },
-          { name: "left", keys: ["ArrowLeft", "q", "Q"] },
-          { name: "right", keys: ["ArrowRight", "d", "D"] },
-        ]}
-      >
+      <KeyboardControls map={controls}>
         <Canvas camera={{ position: [0, 2, 0], rotation: [-0.2, 0, 0] }}>
+          <Activity mode={IS_DEV ? "visible" : "hidden"}>
+            <Grid position={[0, 0.01, 0]} {...gridConfig} />
+          </Activity>
           <World />
           <Player />
         </Canvas>
