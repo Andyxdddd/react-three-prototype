@@ -1,4 +1,4 @@
-import { Grid, KeyboardControls } from "@react-three/drei";
+import { Grid, KeyboardControls, Stats } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { controls } from "./configs/controls";
 import Player from "./components/Player";
@@ -18,7 +18,10 @@ const App = () => {
       <KeyboardControls map={controls}>
         <Canvas camera={{ position: [0, 2, 0], rotation: [-0.2, 0, 0] }}>
           <Activity mode={IS_DEV ? "visible" : "hidden"}>
-            <Grid position={[0, 0.01, 0]} {...gridConfig} />
+            <>
+              <Grid position={[0, 0.01, 0]} {...gridConfig} />
+              <Stats />
+            </>
           </Activity>
           <World />
           <Player />
