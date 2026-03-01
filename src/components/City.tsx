@@ -2,14 +2,15 @@ import { useLoader } from "@react-three/fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 
 const City = () => {
-  const [building, car] = useLoader(GLTFLoader, [
+  const [building, car, city] = useLoader(GLTFLoader, [
     "/models/cyberpunk_background_appartment_building.glb",
     "/models/old_car.glb",
+    "/models/neighbourhood_city_modular_lowpoly.glb",
   ]);
 
   return (
     <>
-      <mesh position={[0, 0, 0]}>
+      {/* <mesh position={[0, 0, 0]}>
         <boxGeometry args={[64, 0, 64]} />
         <meshPhongMaterial color="lightgreen" />
       </mesh>
@@ -36,7 +37,9 @@ const City = () => {
         position={[7.5, 0.1, 8]}
         rotation={[0, Math.PI / 2, 0]}
         scale={1}
-      />
+      /> */}
+
+      <primitive object={city.scene} scale={2} />
     </>
   );
 };
