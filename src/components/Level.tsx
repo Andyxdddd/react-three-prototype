@@ -1,7 +1,7 @@
 import { Box } from "@react-three/drei";
-import { type Level as ILevel } from "../configs/levels";
+import type { LevelType } from "../types";
 
-const Level = ({ level }: { level: ILevel }) => {
+const Level = ({ level }: { level: LevelType }) => {
   return (
     <>
       {level.layout.map((row, z) =>

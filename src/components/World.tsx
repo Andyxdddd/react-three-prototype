@@ -1,10 +1,11 @@
 import { Environment, Sky } from "@react-three/drei";
 import Level from "./Level";
-import { levels, type Level as ILevel } from "../configs/levels";
+import { levels } from "../configs/levels";
+import type { LevelType } from "../types";
 import Player from "./Player";
 
 const World = () => {
-  const level: ILevel = levels[0];
+  const level: LevelType = levels[0];
 
   return (
     <>

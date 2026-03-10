@@ -1,12 +1,6 @@
-type TileType = 0 | 1 | 2 | 3; // 0: empty, 1: road, 2: residential building, 3: boundary wall
+import type { LevelType } from "../types";
 
-export interface Level {
-  name: string;
-  layout: TileType[][];
-  playerStartPosition?: [number, number, number];
-}
-
-export const levels: Level[] = [
+export const levels: LevelType[] = [
   {
     name: "Level 1",
     layout: [
