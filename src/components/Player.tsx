@@ -12,7 +12,7 @@ const Player = () => {
   const [, get] = useKeyboardControls();
   const velocity = useRef(new THREE.Vector3());
   const direction = useRef(new THREE.Vector3());
-  const updateCoordinates = useSetAtom(coordinatesAtom);
+  const updateUICoordinates = useSetAtom(coordinatesAtom);
 
   useFrame((state, delta) => {
     const { forward, backward, left, right, sprint } = get();
@@ -34,7 +34,7 @@ const Player = () => {
 
     state.camera.position.add(velocity.current);
 
-    updateCoordinates({
+    updateUICoordinates({
       x: state.camera.position.x,
       y: state.camera.position.y,
       z: state.camera.position.z,
