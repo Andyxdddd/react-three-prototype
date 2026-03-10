@@ -1,14 +1,11 @@
 import { Grid, KeyboardControls, Stats } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { controls } from "./configs/controls";
-import Player from "./components/Player";
 import { Activity } from "react";
 import DevUi from "./components/ui/DevUi";
 import World from "./components/World";
 
 const IS_DEV = true;
-
-const PLAYER_START_POSITION = [7, 50];
 
 const App = () => {
   return (
@@ -16,12 +13,7 @@ const App = () => {
       <DevUi />
 
       <KeyboardControls map={controls}>
-        <Canvas
-          camera={{
-            position: [PLAYER_START_POSITION[0], 2, PLAYER_START_POSITION[1]],
-            rotation: [-0.2, 0, 0],
-          }}
-        >
+        <Canvas>
           <Activity mode={IS_DEV ? "visible" : "hidden"}>
             <>
               <Stats />
@@ -33,7 +25,6 @@ const App = () => {
             </>
           </Activity>
           <World />
-          <Player />
         </Canvas>
       </KeyboardControls>
     </div>

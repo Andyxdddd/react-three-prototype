@@ -1,10 +1,10 @@
 import { Box } from "@react-three/drei";
-import { levels } from "../configs/levels";
+import { type Level as ILevel } from "../configs/levels";
 
-const Level = () => {
+const Level = ({ level }: { level: ILevel }) => {
   return (
     <>
-      {levels[0].layout.map((row, z) =>
+      {level.layout.map((row, z) =>
         row.map((cell, x) => {
           const position: [number, number] = [x * 10, z * 10];
 
