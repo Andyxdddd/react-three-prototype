@@ -77,7 +77,7 @@ const Building = ({
   position: [number, number];
   type: string;
 }) => {
-  const buildingHeight = 10;
+  const buildingHeight = 0.5;
   const buildingWidth = 10;
 
   return (
