@@ -10,7 +10,7 @@ const World = () => {
   return (
     <>
       <Sky />
-      <Environment preset="dawn" />
+      <Environment preset="city" />
       <ambientLight intensity={0.2} />
       <directionalLight position={[5, 10, 5]} intensity={2} />
       <Level level={level} />

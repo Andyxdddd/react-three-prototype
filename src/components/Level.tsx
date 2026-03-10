@@ -1,5 +1,7 @@
 import { Box } from "@react-three/drei";
 import type { LevelType } from "../types";
+import { useLoader } from "@react-three/fiber";
+import { TextureLoader } from "three/src/loaders/TextureLoader.js";
 
 const Level = ({ level }: { level: LevelType }) => {
   return (
@@ -47,25 +49,28 @@ export default Level;
 // ------------------------------------------------------------
 
 const Road = ({ position }: { position: [number, number] }) => {
+  const texture = useLoader(TextureLoader, "/textures/asphalt.jpg");
   const roadWidth = 5;
 
   return (
     <Box
       args={[roadWidth * 2, 0.1, roadWidth * 2]}
       position={[position[0], 0, position[1]]}
-      material-color="#313438"
+      // material-color="#313438"
+      material-map={texture}
     />
   );
 };
 
 const Grass = ({ position }: { position: [number, number] }) => {
+  const texture = useLoader(TextureLoader, "/textures/grass.jpg");
   const roadWidth = 5;
 
   return (
     <Box
-      args={[roadWidth * 2, 0.5, roadWidth * 2]}
+      args={[roadWidth * 2, 0.2, roadWidth * 2]}
       position={[position[0], 0, position[1]]}
-      material-color="#45664d"
+      material-map={texture}
     />
   );
 };
@@ -79,12 +84,13 @@ const Building = ({
 }) => {
   const buildingHeight = 0.5;
   const buildingWidth = 10;
-
   return (
-    <Box
-      args={[buildingWidth, buildingHeight, buildingWidth]}
-      position={[position[0], buildingHeight / 2, position[1]]}
-      material-color={type === "office" ? "#697078" : "#797570"}
-    />
+    <>
+      <Box
+        args={[buildingWidth, buildingHeight, buildingWidth]}
+        position={[position[0], buildingHeight / 2, position[1]]}
+        material-color={type === "office" ? "#697078" : "#797570"}
+      />
+    </>
   );
 };
