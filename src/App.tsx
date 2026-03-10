@@ -3,18 +3,25 @@ import { Canvas } from "@react-three/fiber";
 import { controls } from "./configs/controls";
 import Player from "./components/Player";
 import { Activity } from "react";
-// import DevUi from "./components/ui/DevUi";
-import WorldV2 from "./components/WorldV2";
+import DevUi from "./components/ui/DevUi";
+import World from "./components/World";
 
 const IS_DEV = true;
+
+const PLAYER_START_POSITION = [7, 50];
 
 const App = () => {
   return (
     <div className="bg-gray-950 h-screen relative">
-      {/* <DevUi /> */}
+      <DevUi />
 
       <KeyboardControls map={controls}>
-        <Canvas camera={{ position: [0, 2, 0], rotation: [-0.2, 0, 0] }}>
+        <Canvas
+          camera={{
+            position: [PLAYER_START_POSITION[0], 2, PLAYER_START_POSITION[1]],
+            rotation: [-0.2, 0, 0],
+          }}
+        >
           <Activity mode={IS_DEV ? "visible" : "hidden"}>
             <>
               <Stats />
@@ -25,7 +32,7 @@ const App = () => {
               />
             </>
           </Activity>
-          <WorldV2 />
+          <World />
           <Player />
         </Canvas>
       </KeyboardControls>

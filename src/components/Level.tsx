@@ -1,62 +1,10 @@
 import { Box } from "@react-three/drei";
-
-const Road = ({ position }: { position: [number, number] }) => {
-  const roadWidth = 5;
-
-  return (
-    <Box
-      args={[roadWidth * 2, 0.1, roadWidth * 2]}
-      position={[position[0], 0, position[1]]}
-      material-color="darkgray"
-    />
-  );
-};
-
-const Grass = ({ position }: { position: [number, number] }) => {
-  const roadWidth = 5;
-
-  return (
-    <Box
-      args={[roadWidth * 2, 0.1, roadWidth * 2]}
-      position={[position[0], 0, position[1]]}
-      material-color="darkgreen"
-    />
-  );
-};
-
-const Building = ({
-  position,
-  type,
-}: {
-  position: [number, number];
-  type: string;
-}) => {
-  const buildingHeight = 10;
-  const buildingWidth = 10;
-
-  return (
-    <Box
-      args={[buildingWidth, buildingHeight, buildingWidth]}
-      position={[position[0], buildingHeight / 2, position[1]]}
-      material-color={type === "office" ? "blue" : "red"}
-    />
-  );
-};
-
-const levelData = [
-  [3, 3, 3, 3, 3, 3, 3],
-  [3, 0, 2, 0, 0, 0, 3],
-  [3, 0, 2, 0, 1, 0, 3],
-  [3, 0, 0, 0, 0, 0, 3],
-  [3, 2, 1, 0, 2, 2, 3],
-  [3, 0, 0, 0, 0, 0, 3],
-  [3, 3, 3, 3, 3, 3, 3],
-];
+import { levels } from "../configs/levels";
 
 const Level = () => {
   return (
     <>
-      {levelData.map((row, z) =>
+      {levels[0].layout.map((row, z) =>
         row.map((cell, x) => {
           const position: [number, number] = [x * 10, z * 10];
 
@@ -80,8 +28,63 @@ const Level = () => {
           }
         }),
       )}
+
+      <mesh position={[6, 2, 50]}>
+        <boxGeometry args={[2, 2, 2]} />
+        <meshPhongMaterial color="green" />
+      </mesh>
+
+      <mesh position={[55, 2, 6]}>
+        <boxGeometry args={[2, 2, 2]} />
+        <meshPhongMaterial color="red" />
+      </mesh>
     </>
   );
 };
 
 export default Level;
+
+// ------------------------------------------------------------
+
+const Road = ({ position }: { position: [number, number] }) => {
+  const roadWidth = 5;
+
+  return (
+    <Box
+      args={[roadWidth * 2, 0.1, roadWidth * 2]}
+      position={[position[0], 0, position[1]]}
+      material-color="#313438"
+    />
+  );
+};
+
+const Grass = ({ position }: { position: [number, number] }) => {
+  const roadWidth = 5;
+
+  return (
+    <Box
+      args={[roadWidth * 2, 0.5, roadWidth * 2]}
+      position={[position[0], 0, position[1]]}
+      material-color="#45664d"
+    />
+  );
+};
+
+const Building = ({
+  position,
+  type,
+}: {
+  position: [number, number];
+  type: string;
+}) => {
+  const buildingHeight = 10;
+  const buildingWidth = 10;
+
+  return (
+    <Box
+      args={[buildingWidth, buildingHeight, buildingWidth]}
+      position={[position[0], buildingHeight / 2, position[1]]}
+      material-color={type === "office" ? "#697078" : "#797570"}
+    />
+  );
+};

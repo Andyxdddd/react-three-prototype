@@ -1,14 +1,14 @@
 import { Environment, Sky } from "@react-three/drei";
-import City from "./City";
+import Level from "./Level";
 
 const World = () => {
   return (
     <>
       <Sky />
-      <Environment preset="city" />
-      <ambientLight intensity={0.1} />
+      <Environment preset="dawn" />
+      <ambientLight intensity={0.2} />
       <directionalLight position={[5, 10, 5]} intensity={2} />
-      <City />
+      <Level />
     </>
   );
 };
