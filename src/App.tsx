@@ -1,51 +1,33 @@
-import { KeyboardControls, Sky } from "@react-three/drei";
+import { Grid, KeyboardControls, Stats } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
-import Player from "./components/Player";
+import { controls } from "./configs/controls";
+import { Activity } from "react";
+import DevUi from "./components/ui/DevUi";
+import World from "./components/World";
+
+const IS_DEV = true;
 
 const App = () => {
   return (
-    <div className="bg-gray-950 h-screen">
-      <KeyboardControls
-        map={[
-          { name: "forward", keys: ["ArrowUp", "z", "Z"] },
-          { name: "backward", keys: ["ArrowDown", "s", "S"] },
-          { name: "left", keys: ["ArrowLeft", "q", "Q"] },
-          { name: "right", keys: ["ArrowRight", "d", "D"] },
-        ]}
-      >
-        <Canvas camera={{ position: [0, 2, 0], rotation: [-0.2, 0, 0] }}>
-          <World />f
-          <Player />
+    <div className="bg-gray-950 h-screen relative">
+      <DevUi />
+
+      <KeyboardControls map={controls}>
+        <Canvas>
+          <Activity mode={IS_DEV ? "visible" : "hidden"}>
+            <>
+              <Stats />
+              <Grid
+                position={[0, 0.01, 0]}
+                infiniteGrid={true}
+                followCamera={true}
+              />
+            </>
+          </Activity>
+          <World />
         </Canvas>
       </KeyboardControls>
     </div>
-  );
-};
-
-const World = () => {
-  return (
-    <>
-      <Sky />
-      <ambientLight intensity={0.5} />
-      <directionalLight position={[1, 1, 0]} color="white" />
-      <mesh position={[0, 0, 0]}>
-        <boxGeometry args={[12, 1, 12]} />
-        <meshPhongMaterial />
-      </mesh>
-      <mesh position={[9, 0, 0]}>
-        <boxGeometry args={[6, 1, 12]} />
-        <meshPhongMaterial color="blue" />
-      </mesh>
-      <mesh position={[18, 0, 0]}>
-        <boxGeometry args={[12, 1, 12]} />
-        <meshPhongMaterial />
-      </mesh>
-
-      <mesh position={[6, 1, -1]}>
-        <boxGeometry args={[0.1, 3, 0.1]} />
-        <meshPhongMaterial color="orange" />
-      </mesh>
-    </>
   );
 };
 
