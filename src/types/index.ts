@@ -1,4 +1,4 @@
-type TileType = 0 | 1 | 2 | 3; // 0: empty, 1: road, 2: residential building, 3: boundary wall
+type TileType = 0 | 1 | 2 | 3; // 0: grass, 1: road, 2: building 1, 3: building 2
 
 interface LevelType {
   name: string;
